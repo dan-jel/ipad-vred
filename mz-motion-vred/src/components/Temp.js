@@ -1,7 +1,14 @@
 import styled from "styled-components";
 import { ReactComponent as SVGIcon } from "../icons/Temp.svg";
+import axios from "axios";
+import { useState } from "react";
 
 const Temp = () => {
+  const [celsius, setCelsius] = useState();
+
+  // Hier weiter machen!!!
+  // Wetter API anbinden basierend auf Ortsangabe von Datetime?!
+
   return (
     <Container>
       <StyledIcon />

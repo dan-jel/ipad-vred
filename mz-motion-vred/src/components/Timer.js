@@ -1,11 +1,30 @@
 import styled from "styled-components";
 import Button from "./Button";
+import { useState, useEffect } from "react";
 
 const Timer = () => {
+  const [active, setActive] = useState(true);
+  const [start, setStart] = useState(0);
+  const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    let secTimer = setInterval(() => {
+      setTime(Math.floor((Date.now() - start) / 1000));
+    }, 1000);
+
+    return () => clearInterval(secTimer);
+  }, [start]);
+
   return (
     <Container>
-      <Button />
-      <h2>it takes 1 minute</h2>
+      <Button active={active} setActive={setActive} setStart={setStart} />
+      {active && <h2>it takes 1 minute</h2>}
+      {!active && (
+        <h2>
+          {("0" + Math.floor(time / 60).toString()).slice(-2)}:
+          {("0" + Math.floor(time % 60).toString()).slice(-2)}
+        </h2>
+      )}
     </Container>
   );
 };
