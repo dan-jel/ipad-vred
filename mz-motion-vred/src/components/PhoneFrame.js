@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 import Logo from "./Logo";
 import Arrow from "./Arrow";
@@ -7,13 +8,15 @@ import Ip from "./Ip";
 import Timer from "./Timer";
 
 const PhoneFrame = () => {
+  const [celsius, setCelsius] = useState();
+
   return (
     <Container>
       <Container2>
         <Logo />
         <Arrow />
-        <Temp />
-        <Ip />
+        <Temp celsius={celsius} />
+        <Ip setCelsius={setCelsius} />
         <Timer />
       </Container2>
     </Container>
